@@ -17,8 +17,24 @@ import Control.Monad.Except
 %tokentype { Token }
 
 %token
-    '==' { Tok1 }
-    A    { Tok2 }
+    NUM   { TokNumber $$ }
+    IDENT { TokIdent  $$ }
+    TYPE  { TokType   $$ }
+    '@'   { TokAt        }
+    ','   { TokComma     }
+    '{'   { TokLAcc      }
+    '}'   { TokRAcc      }
+    '('   { TokLPar      }
+    ')'   { TokRPar      }
+    '|'   { TokBar       }
+    ':'   { TokColon     }
+    '+'   { TokPlus      }
+    '-'   { TokMinus     }
+    '*'   { TokTimes     }
+    '!='  { TokNeq       }
+    '>='  { TokGe        }
+    '>'   { TokArrow     }
+    '='   { TokEq        }
 
 %monad { Except String } { (>>=) } { return }
 %error { parseError }
@@ -26,7 +42,7 @@ import Control.Monad.Except
 %name entry
 %%
 
-Entry : A '==' A { AEq 0 [] }
+Entry : NUM '=' '=' '@' { AEq (fromInteger $1) [] }
 
 {
 
