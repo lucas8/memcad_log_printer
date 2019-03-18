@@ -19,5 +19,7 @@ main = do
       Left err          -> putStrLn $ "Failed : " ++ err
       Right (toks, ast) -> do putStrLn $ "Tokens : " ++ show toks
                               forM_ ast $ putStrLn . show
+                              putStrLn "++++++++++++++++++++++++++++++++"
+                              putStrLn $ show $ makeGraph ast
                                  
 
