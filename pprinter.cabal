@@ -15,7 +15,7 @@ cabal-version:       >=1.10
 
 executable pprinter
   main-is:             Main.hs
-  other-modules:       Lexer, Parser
+  other-modules:       Lexer, Parser, Syntax
   -- other-extensions:    
   build-depends:       base >=4.10 && <4.11
                      , array, containers, transformers

@@ -2,8 +2,6 @@
 {
 module Lexer(Token(..), scanTokens) where
 
-import Syntax
-
 }
 
 %wrapper "basic"
@@ -16,8 +14,10 @@ tokens :-
     $eol        ;
     $white+     ;
     ": ".*" ->" { TokType . readType }
+    "N|"        { const TokVal       }
     $digit+     { TokNumber . read   }
     $alpha+     { TokIdent           }
+    \&          { const TokAddress   }
     \@          { const TokAt        }
     \,          { const TokComma     }
     \{          { const TokLAcc      }
@@ -38,8 +38,9 @@ tokens :-
 data Token = TokNumber Integer
            | TokIdent  String
            | TokType   String
-           | TokAt
+           | TokAt | TokAddress
            | TokComma
+           | TokVal
            | TokLAcc | TokRAcc
            | TokLPar | TokRPar
            | TokBar | TokArrow | TokColon
