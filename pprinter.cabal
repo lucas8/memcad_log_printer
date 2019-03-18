@@ -15,11 +15,11 @@ cabal-version:       >=1.10
 
 executable pprinter
   main-is:             Main.hs
-  other-modules:       Lexer, Parser, Syntax
+  other-modules:       Lexer, Parser, Syntax, Graphviz
   -- other-extensions:    
   build-depends:       base >=4.10 && <4.11
                      , array, containers, transformers
-                     , mtl
+                     , mtl, text
   hs-source-dirs:      src
   ghc-options:         -Wall
   build-tools:         happy, alex

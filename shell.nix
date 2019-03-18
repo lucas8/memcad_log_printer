@@ -5,7 +5,7 @@ let
   inherit (nixpkgs) pkgs;
 
   f = { mkDerivation, alex, array, base, containers, happy, mtl
-      , stdenv, transformers
+      , stdenv, text, transformers
       }:
       mkDerivation {
         pname = "pprinter";
@@ -14,7 +14,7 @@ let
         isLibrary = false;
         isExecutable = true;
         executableHaskellDepends = [
-          array base containers mtl transformers
+          array base containers mtl text transformers
         ];
         executableToolDepends = [ alex happy ];
         license = stdenv.lib.licenses.bsd3;
