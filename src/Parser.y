@@ -26,7 +26,7 @@ import Control.Monad.Except
 %name entry
 %%
 
-Entry : A '==' A { EmptyAST }
+Entry : A '==' A { AEq 0 [] }
 
 {
 
