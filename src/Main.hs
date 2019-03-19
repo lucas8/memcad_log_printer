@@ -4,7 +4,8 @@ module Main where
 import Syntax
 import Lexer
 import Parser (parseExpr, parseTokens)
-import Control.Monad
+import Graphviz
+import Data.Text.Lazy
 
 process :: String -> Either String ([Token], [AST])
 process input = do
@@ -15,11 +16,8 @@ process input = do
 main :: IO ()
 main = do
     input <- getContents
-    case process input of
-      Left err          -> putStrLn $ "Failed : " ++ err
-      Right (toks, ast) -> do putStrLn $ "Tokens : " ++ show toks
-                              forM_ ast $ putStrLn . show
-                              putStrLn "++++++++++++++++++++++++++++++++"
-                              putStrLn $ show $ makeGraph ast
+    putStrLn $ case process input of
+                 Left err       -> "Failed : " ++ err
+                 Right (_, ast) -> unpack $ graphToGraphviz $ makeGraph ast
                                  
 
